@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:orientation="vertical"
+    tools:context="dk.bube.stopwatch.StopwatchActivity">
+
+
+    <dk.bube.stopwatch.ui.Slider
+        android:id="@+id/stopSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10sp"
+        android:paddingEnd="40sp"
+        android:paddingStart="40sp"
+        android:paddingTop="10sp"
+        android:thumb="@drawable/slider_thumb" />
+
+    <fragment
+        android:name="dk.bube.stopwatch.ui.StopwatchFragment"
+        android:id="@+id/stopwatchFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

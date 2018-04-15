@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Coach\'s Stopwatch</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="zeroTime">00:00.00</string>
+    <string name="startup_text">Blah blah. Click start to begin. Select \"Coach\'s Stopwatch\" from menu</string>
+    <string name="Start">Start</string>
+    <string name="slide_unlock">Slide to stop</string>
+    <string name="unlocking">Stopping</string>
+    <string name="zero">00</string>
+</resources>
