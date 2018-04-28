@@ -89,7 +89,14 @@ public class StopwatchFragment extends Fragment {
             stopwatch = restoreStopWatchState(savedInstanceState);
             restoreViewState(stopwatch.getLaps(), stopwatch.isRunning());
         }
+        startUpdatingTimerDisplay();
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        startUpdatingTimerDisplay();
+        super.onResume();
     }
 
     public boolean isRunning() {
@@ -98,14 +105,14 @@ public class StopwatchFragment extends Fragment {
 
     public void startButtonPressed() {
         stopwatch.start();
-        startUpdaterThread();
+        startUpdatingTimerDisplay();
         setStartStopButtonText(stopwatch.isRunning());
     }
 
     public void stopButtonPressed() {
         if (stopwatch.isRunning()) {
             stopwatch.stop();
-            stopUpdaterThread();
+            clearPendingTimerDisplayUpdates();
             Lap lap = stopwatch.recordLap();
             addLapToLapsView(lap);
             insertDividerInLapsView();
@@ -131,10 +138,6 @@ public class StopwatchFragment extends Fragment {
                 insertDividerInLapsView();
             }
         }
-
-        if (running) {
-            startUpdaterThread();
-        }
         setStartStopButtonText(running);
     }
 
@@ -147,12 +150,15 @@ public class StopwatchFragment extends Fragment {
 
     }
 
-    private void stopUpdaterThread() {
+    private void clearPendingTimerDisplayUpdates() {
         handler.removeCallbacks(timerDisplayUpdater);
     }
 
-    private void startUpdaterThread() {
-        handler.postDelayed(timerDisplayUpdater, 0);
+    private void startUpdatingTimerDisplay() {
+        clearPendingTimerDisplayUpdates();
+        if (stopwatch.isRunning()) {
+            handler.postDelayed(timerDisplayUpdater, 0);
+        }
     }
 
 
